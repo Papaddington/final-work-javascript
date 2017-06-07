@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>排行榜</title>
-    <meta name="name" content="content" charset="utf-8">
+    <style type="text/css">
+        #aa{MARGIN-RIGHT: auto;
+            MARGIN-LEFT: auto;
+            vertical-align:middle;
+            height:150px;
+            width:250px;
+            border:1px solid #F00}
+    </style>
 </head>
+
 <body>
-<input type="file" id="file" />
-<input type="button" onclick="readText()" value="显示">
-<div id="tt">
+<div id="aa">
 
 </div>
+
+<script type="text/javascript">
+    var objectList = new Array();
+    function Persion(name,score){
+        this.name=name;
+        this.score=score;
+    }
+    objectList.push(new Persion('John',12341));
+    objectList.push(new Persion('Michelle',10088));
+    objectList.push(new Persion('Amy',15231));
+    objectList.push(new Persion('Kim',8765));
+    objectList.push(new Persion('Mary',11487));
+
+    objectList.sort(function(a,b){
+        return b.score-a.score});
+
+    for(var i=0;i<3;i++){
+
+        document.getElementById("aa").innerHTML += '<br />'+objectList[i].name + ' '+objectList[i].score;
+        //document.writeln('<br />'+objectList[i].name +' '+objectList[i].score);
+    }
+</script>
+
 </body>
 </html>
-<script charset="utf-8">
-    function readText() {
-        var file=document.getElementById("file").files[0];
-        var reader=new FileReader();
-        reader.readAsText(file);
-        reader.onload=function(data)
-        {
-            var tt=document.getElementById("tt")
-            tt.innerHTML=this.result;
-        }
-    }
-
-</script>
