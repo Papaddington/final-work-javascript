@@ -19,11 +19,25 @@
 </div>
 
 <script type="text/javascript">
+/*
+    function readText() {
+        var file=document.getElementById("file").files[0];
+        var reader=new FileReader();
+        reader.readAsText(file);
+        reader.onload=function(data)
+        {
+            var tt=document.getElementById("tt")
+            tt.innerHTML=this.result;
+        }
+    }
+
+    */
     var objectList = new Array();
     function Persion(name,score){
         this.name=name;
         this.score=score;
     }
+
     objectList.push(new Persion('John',12341));
     objectList.push(new Persion('Michelle',10088));
     objectList.push(new Persion('Amy',15231));
@@ -33,11 +47,21 @@
     objectList.sort(function(a,b){
         return b.score-a.score});
 
+
     for(var i=0;i<3;i++){
 
         document.getElementById("aa").innerHTML += '<br />'+objectList[i].name + ' '+objectList[i].score;
         //document.writeln('<br />'+objectList[i].name +' '+objectList[i].score);
     }
+
+    var strHTML= document.getElementById("aa").innerHTML;//获取内容
+    var winSave=window.open();
+    winSave.document.open("text","gb2312");
+    winSave.document.write(strHTML);
+    winSave.document.execCommand("SaveAs",true,"D:\\paihangbang.txt");
+    window.location.href="#"  ;
+    winSave.close();
+
 </script>
 
 </body>
