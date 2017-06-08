@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<textarea name="wenben" id="wenben" cols="100" rows="10"></textarea>
+<input type="button" value="Save" onclick="saveText()">
+<script>
+    function saveText()  {
+        var strHTML= document.getElementById("wenben").value;//获取内容
+
+        var winSave=window.open();
+        winSave.document.open("text","gb2312");
+        winSave.document.write(strHTML);
+        winSave.document.execCommand("SaveAs",false,"D:\\newfile.txt");
+        window.location.href="#"  ;
+        winSave.close();
+    }
+</script>
+</body>
+</html>
