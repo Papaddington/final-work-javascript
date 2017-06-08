@@ -57,8 +57,21 @@ p {
     z-index: 2;
     background: #FFC43D;
     color: #F8FFE5;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    align-items: center;
+    -webkit-transition: 110ms ease-in-out;
+    transition: 110ms ease-in-out;
     border-radius: 3px;
-    margin-left: 10px;
+    border: 7px solid #9a9a95;
     box-sizing: border-box;
 }
 .tile--4 {
