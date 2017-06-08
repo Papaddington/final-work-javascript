@@ -62,55 +62,42 @@ p {
     box-sizing: border-box;
 }
 .tile--4 {
-
     background: #EF476F;
     color: #F8FFE5;
 }
 .tile--8 {
-    top: 120px;
     background: #1B9AAA;
     color: #F8FFE5;
 }
 .tile--16 {
-    top: 240px;
     background: #06D6A0;
     color: #F8FFE5;
 }
 .tile--32 {
-    top: 360px;
     background: #f37694;
     color: #F8FFE5;
 }
 .tile--64 {
-    top: 480px;
     background: #22c2d6;
     color: #F8FFE5;
 }
 .tile--128 {
-    top: 600px;
     background: #17f8be;
     color: #F8FFE5;
 }
 .tile--256 {
-    left: 120px;
     background: #ffd470;
     color: #F8FFE5;
 }
 .tile--512 {
-    top: 120px;
-    left: 120px;
     background: #eb184a;
     color: #F8FFE5;
 }
 .tile--1024 {
-    top: 240px;
-    left: 120px;
     background: #14727e;
     color: #F8FFE5;
 }
 .tile--2048 {
-    top: 360px;
-    left: 120px;
     background: #05a47b;
     color: #F8FFE5;
 }
