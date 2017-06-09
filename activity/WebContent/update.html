@@ -1,0 +1,53 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>home</title>
+</head>
+<script type="text/javascript" src="js/jquery.js"></script>  
+<script type="text/javascript" src="js/jquery.min.js"></script> 
+<body>
+<h2>录入成绩</h2>
+	rank:<input type="text" name="rank" id="rank"/>
+	<p>
+	grade:<input type="text" name="grade" id="grade"/>
+	<p>
+	name:<input type="text" name="name" id="name"/>
+	<p>
+	 <input type="submit" value="录入成绩" onclick="ajaxTest();"/>  
+	 <div id="result"></div> 
+<script type="text/javascript">
+
+function ajaxTest() { 
+	var params={
+	    	"rank":document.getElementById("rank").value,
+	    	"grade":document.getElementById("grade").value,
+	    	"name":document.getElementById("name").value,
+	}
+    $.ajax({    
+        type: "post",    
+        async: true,    
+        url: "/activity/update.do",    
+  		data: JSON.stringify(params),
+        dataType: "json",   
+        contentType: "application/json; charset=utf-8",   
+        error: function(data){  
+        	alert("出错了！！:"+data.msg);
+        } , 
+        success: function(data) {  
+        	/* alert("success:"+data.msg);   */
+            $("#result").html(data.msg) ;   
+            if (data.msg == "update succ") {//根据返回值进行跳转
+                //window.location.href = 'main.jsp?userName='+data.userName+'&userId='+data.userId;//
+                alert("成绩录入成功");
+            }
+            else if(data.msg == "error"){
+            	alert("成绩录入失败");
+            }
+        }     
+    }); 
+}  
+</script>
+</body>
+</html>
