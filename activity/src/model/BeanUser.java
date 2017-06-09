@@ -6,34 +6,35 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(name = "ranktable")
 public class BeanUser {
-	private String userId;
-	private String userName;
-	private String password;
+	private int rank;
+	private String name;
+	private int grade;
 	
 	@Id
-	@Column(name = "userId")
-	public String getUserId() {
-		return userId;
+	@Column(name = "rank")
+	public int getRank() {
+		return rank;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	
-	@Column(name = "userName")
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setRank(int rank) {
+		this.rank = rank;
 	}
 	
-	@Column(name = "password")
-	public String getPassword() {
-		return password;
+	@Column(name = "name")
+	public String getName() {
+		return name;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	@Column(name = "grade")
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 }

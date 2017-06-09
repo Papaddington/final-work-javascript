@@ -7,5 +7,6 @@ import model.BeanUser;
 
 @Component
 public interface UserServiceI {
-	public BeanUser checkLogin(String userId, String password)throws BaseException;
+	public void updategrade(BeanUser user)throws BaseException;
+	public BeanUser searchgrade(int rank)throws BaseException;
 }

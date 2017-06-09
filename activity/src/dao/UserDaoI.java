@@ -10,6 +10,6 @@ public interface UserDaoI {
 	 public void delUser();
 	 /** 更新用户 */
 	 public void updateUser();
-	 
-	 public BeanUser searchUser(String userId) throws BaseException;
+	 public BeanUser searchUser(int rank) throws BaseException;
+	 public void addgrade(BeanUser user) throws BaseException;
 }
