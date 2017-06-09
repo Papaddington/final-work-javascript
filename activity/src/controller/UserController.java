@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import convenience.util.BaseException;
+import dao.UserDao;
 import model.BeanUser;
 import service.UserService;
 import service.UserServiceI;
@@ -25,35 +26,78 @@ public class UserController {
 	@Autowired
 	private UserServiceI userService;
 	
-	@RequestMapping(value = "/login.do") 
+	@RequestMapping(value = "/update.do") 
 	@ResponseBody
-	public String login(@RequestBody String params) throws JSONException{  
+	public String update(@RequestBody String params) throws JSONException, BaseException{  
 	
 
-
     	JSONObject json = new JSONObject(params);
-    	String userId = (String) json.get("userId");
-    	String password = (String) json.get("password");
+    	String rankstr = (String) json.get("rank");
+    	int rank =Integer.valueOf(rankstr);
+    	String name = (String) json.get("name");
+    	String gradestr = (String) json.get("grade");
+    	int grade=Integer.valueOf(gradestr);
     	
-    	System.out.println("userId:"+userId);
-    	System.out.println("password:"+password);
-    	BeanUser user = null;
-    	try {
-    		user = userService.checkLogin(userId, password);
-		} catch (BaseException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
+    	System.out.println("rank:"+rank);
+    	System.out.println("name:"+name);
+    	System.out.println("grade:"+grade);
+    	BeanUser user = new BeanUser();
+    	user.setGrade(grade);
+    	user.setName(name);
+    	user.setRank(rank);
+    	
     	JSONObject jo = new JSONObject();
     	if(user != null){
-        	System.out.println("loginsuccess");
-        	jo.put("userId", user.getUserId());
-        	jo.put("userName", user.getUserName());
-        	jo.put("msg", "succ");
+        	System.out.println("update success");
+        	userService.updategrade(user);
+        	jo.put("msg", "update succ");
     	}
     	else{
     		jo.put("msg", "error");
     	}
+		return jo.toString(); 
+    }    
+	
+	@RequestMapping(value = "/search.do") 
+	@ResponseBody
+	public String search(@RequestBody String params) throws JSONException, BaseException{  
+	
+
+    	
+    	BeanUser user = userService.searchgrade(1);
+    	
+    	JSONObject jo = new JSONObject();
+    	if(user.getGrade() != 0){
+        	System.out.println("get rank1");
+        	jo.put("rank1name", user.getName());
+        	jo.put("rank1grade", user.getGrade());
+    		jo.put("msg1", "succ");
+    	}
+    	else{
+    		jo.put("msg1", "rank1 null");
+    	}
+    	user = userService.searchgrade(2);
+    	if(user.getGrade() != 0){
+        	System.out.println("get rank2");
+        	jo.put("rank2name", user.getName());
+        	jo.put("rank2grade", user.getGrade());
+    		jo.put("msg2", "succ");
+    	}
+    	else{
+    		jo.put("msg2", "rank2 null");
+    	}
+    	user = userService.searchgrade(3);
+    	if(user.getGrade() != 0){
+        	System.out.println("get rank3");
+        	jo.put("rank3name", user.getName());
+        	jo.put("rank3grade", user.getGrade());
+        	jo.put("msg3", "succ");
+    	}
+    	else{
+    		jo.put("msg3", "rank3 null");
+    	}
+    	
+    	
 		return jo.toString(); 
     }    
 }

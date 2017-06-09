@@ -33,15 +33,25 @@ public class UserDao implements UserDaoI{
 	}
 
 	@Override
-	public BeanUser searchUser(String userId) throws BaseException{
+	public BeanUser searchUser(int rank) throws BaseException{
 		// TODO 自动生成的方法存根
 		Session s = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = s.beginTransaction();
-		String hql = "from BeanUser where userId = '" + userId + "'";
+		String hql = "from BeanUser where rank = '" + rank + "'";
 		Query qry = s.createQuery(hql);
 		Object user = qry.uniqueResult();
 		tx.commit();
 		return (BeanUser)user;
 	}
+	
+	@Override
+	public void addgrade(BeanUser user) throws BaseException{
+		// TODO 自动生成的方法存根
+		Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tx = s.beginTransaction();
+		s.update(user);
+		tx.commit();
+		}
+
 
 }

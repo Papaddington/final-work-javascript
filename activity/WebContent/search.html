@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>home</title>
+</head>
+<script type="text/javascript" src="js/jquery.js"></script>  
+<script type="text/javascript" src="js/jquery.min.js"></script> 
+<body>
+<h2>获取排行榜</h2>
+	rank1:<a type="text" id="rank1" >rank1</a>
+	grade1:<a type="text"id="grade1">grade1</a>
+	name1:<a type="text" id="name1"/>name1</a>
+	<p>
+	rank2:<a type="text"  id="rank2"></a>
+	grade2:<a type="text"  id="grade2"></a>
+	name2:<a type="text"  id="name2"/></a>
+	<p>
+	rank3:<a type="text" id="rank3"></a>
+	grade3:<a type="text" id="grade3"></a>
+	name3:<a type="text" id="name3"/></a>
+	<p>
+	 <input type="submit" value="获取排行榜" onclick="ajaxTest();"/>  
+	 <div id="result"></div> 
+<script type="text/javascript">
+
+function ajaxTest() { 
+	var params={};	
+    $.ajax({   
+        type: "post",    
+        async: true,    
+        url: "/activity/search.do",    
+  		data: JSON.stringify(params),
+        dataType: "json",   
+        contentType: "application/json; charset=utf-8",   
+        error: function(data){  
+        	alert("出错了！！:"+data.msg1);
+        } , 
+        success: function(data) {  
+        	/* alert("success:"+data.msg);   */
+            $("#result").html(data.msg1) ;  
+            if (data.msg1 == "succ"&&data.msg2 == "succ"&&data.msg3 == "succ") {
+                $("#grade1").html(data.rank1grade);
+                $("#rank1").html("1");
+                $("#name1").html(data.rank1name);
+                $("#grade2").html(data.rank2grade);
+                $("#rank2").html("2");
+                $("#name2").html(data.rank2name);  
+                $("#grade3").html(data.rank3grade);
+                $("#rank3").html("3");
+                $("#name3").html(data.rank3name);  
+            }
+            else{
+            	alert("error");
+            }
+        }     
+    }); 
+}  
+</script>
+</body>
+</html>

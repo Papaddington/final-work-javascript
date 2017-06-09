@@ -17,15 +17,16 @@ public class UserService implements UserServiceI{
 	}
 	 
 	@Override
-	public BeanUser checkLogin(String userId, String password) throws BaseException {
+	public void updategrade(BeanUser user)throws BaseException{
 		// TODO 自动生成的方法存根
 		
-		BeanUser user = userDaoI.searchUser(userId);
-		System.out.println("Password2:"+password);
-		if(user != null && password.equals(user.getPassword())){
-			return user;
-		}
-		return null;
+		userDaoI.addgrade(user);
+	}
 
+	@Override
+	public BeanUser searchgrade(int rank) throws BaseException {
+		// TODO Auto-generated method stub
+		BeanUser user=userDaoI.searchUser(rank);
+		return user;
 	}
 }
