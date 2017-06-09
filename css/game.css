@@ -114,5 +114,29 @@ p {
     background: #05a47b;
     color: #F8FFE5;
 }
+.tile--pop {
+    -webkit-animation: pop 0.3s ease-in-out;
+    animation: pop 0.3s ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+@-webkit-keyframes pop {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    90% {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 
 
