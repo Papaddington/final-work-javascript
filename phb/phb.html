@@ -4,19 +4,53 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>排行榜</title>
     <style type="text/css">
-        #aa{MARGIN-RIGHT: auto;
-            MARGIN-LEFT: auto;
+        #div{
+            height:192px;
+            width:193px;
+            margin:0px auto;
+            border:1px solid #a9c9e2;
+            background:#e8f5fe;
+        }
+        #aa{
+            float:left;
+            margin-right: auto;
+            margin-left: -1px;
             vertical-align:middle;
-            height:150px;
-            width:250px;
-            border:1px solid #F00}
+            height:180px;
+            width:140px;
+            padding-top: 10px;
+            text-align:center;
+            font-size: 24px;
+            font-family: 黑体;
+        }
+        #bb{
+            float:left;
+            margin-right: auto;
+            margin-left: auto;
+            height:180px;
+            width:50px;
+            padding-top: 10px;
+            text-align:center;
+            font-size: 24px;
+            font-family: 黑体;
+        }
+        p{
+            text-align:center;
+            font-size: 30px;
+            font-family: 黑体;
+        }
+
     </style>
 </head>
 
-<body>
+<body onload="yes()">
+
 <hr>
-<input type="button" onclick="yes()" value=" 保 存 ">
-<div id="aa">
+
+<p>排行榜<br></p>
+<div id="div">
+    <div id="bb"></div>
+    <div id="aa"></div>
 </div>
 
 <script language="JavaScript">
@@ -32,28 +66,20 @@
     s = null;
     //文件数据行数
     tlen=fsoArray.length;
-    //输出行数
-    //document.getElementById("ReadLen").value = tlen;
     //输出所有信息
-    //document.getElementById("codeall").value = fsoArray.join("\r\n");
+    //document.getElementById("aa").value = fsoArray.join("\r\n");
 
     var objectList = new Array();
     function Persion(name,score){
         this.name=name;
         this.score=score;
     }
-/*
-    objectList.push(new Persion('John',12341));
-    objectList.push(new Persion('Michelle',10088));
-    objectList.push(new Persion('Amy',15231));
-    objectList.push(new Persion('Kim',8765));
-    objectList.push(new Persion('Mary',11487));
-*/
+
     for(var j=0;j<tlen;j+=2){
         objectList.push(new Persion(fsoArray[j],fsoArray[j+1]));
     }
     //新用户分数
-    objectList.push(new Persion('Ben',12111));
+    objectList.push(new Persion('BenJin',12122));
 
     //分数从高到低排序
     objectList.sort(function(a,b){
@@ -63,6 +89,8 @@
     for(var i=0;i<3;i++){
         document.getElementById("aa").innerHTML += objectList[i].name +'<br />';
         document.getElementById("aa").innerHTML += objectList[i].score+'<br />';
+        document.getElementById("bb").innerHTML +=(i+1)+'<br />';
+        document.getElementById("bb").innerHTML +="成绩";
         //document.writeln('<br />'+objectList[i].name +' '+objectList[i].score);
     }
 
@@ -71,7 +99,7 @@
         var strFile = "D:\\test.txt";
         var objFSO = new ActiveXObject("Scripting.FileSystemObject");
         var objStream = objFSO.CreateTextFile(strFile, true);
-        /*
+        /*保存所有
         for(var k=0;k<=tlen/2;k++){
             if(k<tlen/2) {
                 objStream.WriteLine(objectList[k].name);
@@ -83,15 +111,16 @@
             }
         }
         */
+        //保存前3名
         objStream.WriteLine(objectList[0].name);
         objStream.WriteLine(objectList[0].score);
         objStream.WriteLine(objectList[1].name);
         objStream.WriteLine(objectList[1].score);
         objStream.WriteLine(objectList[2].name);
-        objStream.Write(objectList[3].score);
+        objStream.Write(objectList[2].score);
 
-        objStream.Close(); // 关闭文件
-        //alert("ok");
+        objStream.Close();
+
     }
 </script>
 
