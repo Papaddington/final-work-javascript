@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+<head>
+<script type="text/javascript" src="jquery-3.0.0.js"></script>
+<meta charset="utf-8">
+<title>2048</title>
+<style>
+
+.bangdan{
+position: absolute;
+background-color: black;
+border: 1px solid #000;
+width:250px;
+height:400px;
+margin-top: 80px;
+margin-left: 1140px;
+display: none;
+}
+	
+.contain {
+		display: inline;
+	}
+	
+.game{
+		
+	}
+
+	
+.mybutton{
+	position: absolute;
+	width: 150px;
+	height: 45px;
+	margin-left: 1220px;
+	border-radius: 10px;
+	background: #82E976;
+	color:#fff;
+	text-align:center;
+	font-size: 30px;
+}
+	
+.yinyue{
+	z-index: 2;
+	position: absolute;
+	width:50px;
+	height:50px;
+	left: 1150px;
+	top: 147px;
+}
+
+	.gameover{
+		z-index: 3;
+		width:500px;
+		height:500px;
+		position: absolute;
+		margin-left: 500px;
+		top: 150px; 
+		border:1px solid #E13C3F;
+		
+	}
+	
+		.wenzi{
+	    font-family:"YouYuan" ,幼圆;
+		width: 400px;
+		height: 90px;
+		color: #766B6B;
+		text-align:center;
+		font-size: 60px;
+		margin-top: 50px;
+		margin-left: 80px;
+	}
+	
+	.fenshu{
+		width: 200px;
+		height: 90px;
+		border-radius: 10px;
+		background: #C4B2B3;
+		color:#fff;
+		text-align:center;
+		font-size: 30px;
+		margin-top: 10px;
+		margin-left: 150px;
+	}
+	
+	.fenxiang{
+		width: 200px;
+		height: 90px;
+		border-radius: 10px;
+		background: #C4B2B3;
+		color:#fff;
+		text-align:center;
+		font-size: 30px;
+		margin-top: 30px;
+		margin-left: 150px;
+	}
+	
+	.tryagain{
+		width: 200px;
+		height: 90px;
+		border-radius: 10px;
+		background: #C4B2B3;
+		color:#fff;
+		text-align:center;
+		font-size: 30px;
+		margin-top: 30px;
+		margin-left: 150px;
+	}
+	
+	.nuli{
+		z-index: 4;
+		position: absolute;
+		width: 250px;
+		height: 90px;
+		border-radius: 10px;
+		background: #E4E845;
+		color:#fff;
+		text-align:center;
+		font-size: 30px;
+		left:635px;
+		top:412px;
+		display: none;
+	}
+	
+	.fenxiangshangchuan{
+		z-index: 5;
+		position: absolute;
+		width: 350px;
+		height: 100px;
+		border-radius: 10px;
+		background: #F86215;
+		color:#fff; 
+		text-align:center;
+		font-size: 30px;
+		left:590px;
+		top:412px;
+		box-shadow: 2px 2px 5px #bbb;
+	}
+	
+	.mingzi{
+		margin-top: 10px;
+	}
+	
+	.queding{
+		border-radius: 10px;
+		background: #F1DADB;
+	}
+	
+	.quxiao{
+		border-radius: 10px;
+		background: #F1DADB;
+	}
+
+</style>
+</head>
+
+<body>
+<div class="contain">
+
+	<button class="mybutton">排行榜</button>
+	<div class="bangdan"></div>
+	<div class="game" style="width:500px;height:500px;margin-left:500px;margin-top:150px; border:1px solid #000;"></div>
+		
+	
+	<div class="yinyue">
+    <audio id="music2" src="beijing.mp3" loop></audio>    
+    <a href="javascript:playPause();"><img src="pause.gif" width="48" height="50" id="music_btn2" border="0"></a> 
+    </div>
+	
+	<div class="gameover">
+		<div class="wenzi"><body>Game Over !</body></div>
+        <button class="fenshu">分数</button>
+	    <button class="fenxiang">分享</button>
+		<button class="tryagain">重新开始</button>
+	</div>
+   
+   <div claa="jixunuli">
+        <button class="nuli">请继续努力 ^_^ !</button>
+	</div>
+   
+   <div class="fenxiangshangchuan">
+        <div class="mingzi"><body>请输入你的大名~</body></div>
+        <input id="name" type="text" value=""/>
+   	    <button class="queding">确定</button>
+   	    <button class="quxiao">取消</button>
+   </div>
+</div>
+</body>
+
+<script>
+	$(".mybutton").click(function(){
+		if($(".bangdan").css("display")=="none"){
+			$(".bangdan").show();
+		}else{
+			$(".bangdan").hide();
+		}
+	});
+</script>
+
+<script>
+	function playPause() {    
+    var music = document.getElementById('music2');    
+    var music_btn = document.getElementById('music_btn2');    
+    if (music.paused){    
+        music.play();    
+        music_btn.src='play.gif';    
+    }    
+    else{    
+        music.pause();    
+        music_btn.src = 'pause.gif';     
+    }    
+} 
+</script>
+
+<script>
+	$(".tryagain").click(function(){
+		if($(".gameover").css("display")=="none"){
+			$(".gameover").show();
+		}else{
+			$(".gameover").hide();
+		}
+	});
+</script>
+
+<script>
+	$(".nuli").click(function(){
+		if($(".nuli").css("display")=="none"){
+			$(".nuli").show();
+		}else{
+			$(".nuli").hide();
+		}
+	});
+</script>
+
+<script>
+		$(".queding").click(function(){
+			if($(".name").val() == "")
+				{
+					alert($("请输入数据")；
+						  return false;
+				}
+						  return true;
+		});
+	</script>
+	
+<script>
+	$(".quxiao").click(function(){
+		if($(".fenxiangshangchuan").css("display")=="none"){
+			$(".fenxiangshangchuan").show();
+		}else{
+			$(".fenxiangshangchuan").hide();
+		}
+	});
+</script>
+</html>
