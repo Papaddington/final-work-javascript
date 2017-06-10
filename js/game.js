@@ -39,19 +39,27 @@ function createRandomTile() {
     randomX = parseInt(randomX, 10);
     var randomY = Math.random() * 5;
     randomY = parseInt(randomY, 10);
-    if (canGenerate(randomY, randomX)) {
-        var tileDiv = document.createElement('div');
-        tileDiv.classList.add('tile', 'tile--2');
-        setTimeout(function () {
-            tileDiv.classList.add("tile--pop");
-        }, 100);
-        tileDiv.innerHTML = '<p>' + 2 + '</p>';
-        tileDiv.style.left = randomX * 100 + 'px';
-        tileDiv.style.top = randomY * 100 + 'px';
-        tileDiv.id = (randomY) + "" + (randomX);
-        tileContainer.appendChild(tileDiv);
-        game[randomY][randomX] = 2;
+    while(!canGenerate(randomY,randomX)) {
+        randomX = Math.random() * 5;
+        randomX = parseInt(randomX, 10);
+        randomY = Math.random() * 5;
+        randomY = parseInt(randomY, 10);
     }
+    var value = generateRandom();
+    var tileDiv = document.createElement('div');
+    tileDiv.classList.add('tile','tile--' + value);
+    setTimeout(function () {
+        tileDiv.classList.add("tile--pop");
+    }, 100);
+    tileDiv.innerHTML = '<p>' + value + '</p>';
+    tileDiv.style.left = randomX * 100 + 'px';
+    tileDiv.style.top = randomY * 100 + 'px';
+    tileDiv.id = (randomY) + "" + (randomX);
+    tileContainer.appendChild(tileDiv);
+    game[randomY][randomX] = value;
+}
+function generateRandom() {
+    return Math.random() > 0.5 ? 2 : 4;
 }
 function newGameStart() {
     document.getElementById('tile-container').innerHTML = '';
@@ -223,7 +231,8 @@ function handleKeypress(event) {
     if (moveArray.length != 0) {
         createRandomTile();
     }
-    console.log(score);
+    var scorediv = document.getElementById("score");
+    scorediv.innerHTML = "<p>" + score + "</p>";
 }
 function isFull() {
     for (var i = 0; i < size; i++) {
@@ -243,7 +252,7 @@ function gameOver() {
         moveArray.concat(shiftRight());
         moveArray.concat(shiftDown());
         if (moveArray.length == 0) {
-            console.log("GameOver");
+            alert("gameover");
         }
     }
 }
