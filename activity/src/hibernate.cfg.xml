@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory> 
+ 		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF</property>
+        <property name="connection.useUnicode">true</property>
+        <property name="connection.characterEncoding">utf-8</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">123456</property>
+ 
+      
+        <!-- JDBC connection pool (use the built-in) -->
+<!--         <property name="connection.pool_size">1</property>
+ -->       
+         <!--C3P0配置  -->
+        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+        <!-- 最大连接数 -->
+        <property name="hibernate.c3p0.max_size">20</property>
+        <!-- 最小连接数 -->
+        <property name="hibernate.c3p0.min_size">5</property>
+        <!-- 获得连接的超时时间,如果超过这个时间,会抛出异常，单位毫秒 -->
+        <property name="hibernate.c3p0.timeout">120</property>
+        <!-- 当连接池里面的连接用完的时候，C3P0一下获取的新的连接数 -->
+        <property name="hibernate.c3p0.acquire_increment">1</property>
+         <!-- 最大的PreparedStatement的数量 -->
+        <property name="hibernate.c3p0.max_statements">100</property>
+        <!--c3p0将建一张名为Test的空表，并使用其自带的查询语句进行测试。如果定义了这个参数那么属性preferredTestQuery将被忽略。你不能在这张Test表上进行任何操作，它将只供c3p0测试使用。Default: null-->
+        <property name="hibernate.c3p0.automaticTestTable">Test</property>
+        <property name="hibernate.c3p0.idle_test_period">120</property>
+        <property name="hibernate.c3p0.testConnectionOnCheckout">true</property>
+        <property name="hibernate.c3p0.timeout">25000</property>
+         <!-- SQL dialect -->
+<!--         <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+ -->     
+        <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property> 
+        
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>
+        
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        
+        <!-- Echo all executed SQL to stdout -->
+       <property name="show_sql">true</property>
+<!--        <property name="show_sql">true</property>
+ -->     
+        <mapping class="model.BeanUser"/>
+                
+    </session-factory>
+
+</hibernate-configuration>
+

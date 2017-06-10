@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>排行榜</title>
+    <meta name="name" content="content" charset="utf-8">
+</head>
+<body>
+<input type="file" id="file" />
+<input type="button" onclick="readText()" value="显示">
+<div id="tt">
+
+</div>
+</body>
+</html>
+<script charset="utf-8">
+    function readText() {
+        var file=document.getElementById("file").files[0];
+        var reader=new FileReader();
+        reader.readAsText(file);
+        reader.onload=function(data)
+        {
+            var tt=document.getElementById("tt")
+            tt.innerHTML=this.result;
+        }
+    }
+
+</script>
