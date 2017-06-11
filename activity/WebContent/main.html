@@ -1,0 +1,491 @@
+<!doctype html>
+<html>
+<head>
+<script type="text/javascript" src="jquery-3.0.0.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>  
+<script type="text/javascript" src="js/jquery.min.js"></script> 
+<meta charset="utf-8">
+<title>2048</title>
+<style>
+.mybutton{
+	position: absolute;
+	width: 150px;
+	height: 45px;
+	position: absolute;
+	left: 1120px;
+	top:200px;
+	border-radius: 10px;
+	background: #82E976;
+	color:#fff;
+	text-align:center;
+	font-size: 30px;
+}
+
+.bangdan{
+position: absolute;
+background-color: black;
+border: 1px solid #000;
+width:250px;
+height:400px;
+top: 80px;
+left: 1140px;
+display: none;
+}
+	
+.contain {
+		display: inline;
+	}
+	
+.game{
+		
+	}
+
+	
+
+	
+.yinyue{
+	z-index: 2;
+	position: absolute;
+	width:50px;
+	height:50px;
+	left: 1280px;
+	top: 200px;
+}
+
+	.gameover{
+		text-align: center;
+		z-index: 3;
+		width:500px;
+		height:500px;	
+		position: absolute;
+        background: #9a9a95;
+        display: none;		
+	}
+	
+		.wenzi{
+	    font-family:"YouYuan" ,幼圆;
+		width: 400px;
+		height: 90px;
+		color: #766B6B;
+		text-align:center;
+		font-size: 60px;
+		margin-top: 50px;
+		margin-left: 80px;
+	}
+	
+	.fenxiang{
+		width: 300px;
+		height: 90px;
+		border-radius: 10px;
+		background: #C4B2B3;
+		color:#fff;
+		text-align:center;
+		font-size: 30px;
+		margin-top: 30px;
+		margin-left: 30px;
+	}
+	
+	.tryagain{
+		width: 300px;
+		height: 90px;
+		border-radius: 10px;
+		background: #C4B2B3;
+		color:#fff;
+		text-align:center;
+		font-size: 30px;
+		margin-top: 30px;
+		margin-left: 30px;
+	}
+	
+	.nuli{
+		z-index: 4;
+		position: absolute;
+		width: 350px;
+		height: 100px;
+		border-radius: 10px;
+		background: #E4E845;
+		color:#fff;
+		text-align:center;
+		font-size: 30px;
+	    left:560px;
+		top:330px;
+		display: none;
+	}
+	
+	.fenxiangshangchuan{
+		z-index: 5;
+		position: absolute;
+		width: 350px;
+		height: 100px;
+		border-radius: 10px;
+		background: #F86215;
+		color:#fff; 
+		text-align:center;
+		font-size: 30px;
+		left:560px;
+		top:330px;
+		box-shadow: 2px 2px 5px #bbb;
+		display: none;
+	}
+	
+	.mingzi{
+		margin-top: 10px;
+	}
+	
+	.queding{
+		border-radius: 10px;
+		background: #F1DADB;
+	}
+	
+	.quxiao{
+		border-radius: 10px;
+		background: #F1DADB;
+	}
+        #div{
+            border:1px solid #a9c9e2;
+            background:#e8f5fe;
+            position: absolute;
+            top: 300px;
+            left: 1080px;
+            display: none;
+            position: absolute;
+            width:300px;
+            height:400px;
+
+        }
+        #aa{
+            float:left;
+            margin-right: auto;
+            margin-left: -1px;
+            vertical-align:middle;
+            height:390px;
+            width:180px;
+            padding-top: 10px;
+            text-align:center;
+            font-size: 30px;
+            font-family: 黑体;
+        }
+        #bb{
+            float:left;
+            margin-left: 50px;
+            height:390px;
+            width:60px;
+            padding-top: 10px;
+            text-align:center;
+            font-size: 30px;
+            font-family: 黑体;
+        }
+        .fenshurongqi{
+            position: absolute;
+            top:50px;
+            left:660px;           
+            font-family:"YouYuan" ,幼圆;
+	        font-size: 30px;
+        }
+      
+
+</style>
+<link rel="stylesheet" href="css/game.css">
+</head>
+
+<body onload ="ajaxGet()">
+<div class="contain">
+
+	<button class="mybutton">排行榜</button>
+<div id="div">
+    <div id="bb">
+    <a type="text"  id="aaarank1"></a>
+    <a type="text"  id="aaarank2"></a>
+    <a type="text"  id="aaarank3"></a></div>
+    <div id="aa">
+    <a type="text"  id="bbbrank1"></a>
+    <a type="text"  id="bbbrank2"></a>
+    <a type="text"  id="bbbrank3"></a>
+    </div>
+</div>
+
+    <div class="fenshurongqi">
+    
+    <body>当前分数</body>
+	<div id = "score"> <p> score</p></div>
+	
+	</div>
+	
+<div class="game">
+	<div class="gameover">
+		<div class="wenzi">Game Over !</div>
+	    <button class="fenxiang"  onclick="ajaxsearch();">分享</button>
+		<button class="tryagain" >重新开始</button>
+	</div>
+        <div id="tile-container" class="tile-container">
+        </div>
+    </div>
+    <script src="js/game.js"></script>
+		
+	
+	<div class="yinyue">
+    <audio id="music2" src="beijing.mp3" loop></audio>    
+    <a href="javascript:playPause();"><img src="pause.gif" width="48" height="50" id="music_btn2" border="0"></a> 
+    </div>
+	
+
+   
+   <div claa="jixunuli">
+        <button class="nuli">请继续努力 ^_^ !</button>
+	</div>
+   
+   <div class="fenxiangshangchuan">
+        <div class="mingzi"><body>请输入你的大名~</body></div>
+        <input id="name1" type="text" value=""/>
+   	    <button class="queding" onclick="updatephb();">确定</button>
+   	    <button class="quxiao">取消</button>
+   </div>
+</div>
+</body>
+
+<script>
+	$(".mybutton").click(function(){
+		if($("#div").css("display")=="none"){
+			$("#div").show();
+		}else{
+			$("#div").hide();
+		}
+	});
+</script>
+
+<script>
+	function playPause() {    
+    var music = document.getElementById('music2');    
+    var music_btn = document.getElementById('music_btn2');    
+    if (music.paused){    
+        music.play();    
+        music_btn.src='play.gif';    
+    }    
+    else{    
+        music.pause();    
+        music_btn.src = 'pause.gif';     
+    }    
+} 
+</script>
+
+<script>
+	$(".tryagain").click(function(){
+		var scorediv = document.getElementById("score");
+	    scorediv.innerHTML = "<p>score</p>";
+		newGameStart();
+		if($(".gameover").css("display")=="none"){
+			$(".gameover").show();
+		}else{
+			$(".gameover").hide();
+		}
+	});
+</script>
+
+<script>
+	$(".nuli").click(function(){
+		if($(".nuli").css("display")=="none"){
+			$(".nuli").show();
+		}else{
+			$(".nuli").hide();
+		}
+	});
+</script>
+
+	
+<script>
+	$(".quxiao").click(function(){
+		if($(".fenxiangshangchuan").css("display")=="none"){
+			$(".fenxiangshangchuan").show();
+		}else{
+			$(".fenxiangshangchuan").hide();
+		}
+	});
+</script>
+
+<script type="text/javascript" language="JavaScript">
+var data1name;
+var data1grade;
+var data2name;
+var data2grade;
+var data3name;
+var data3grade;
+var na;
+var grade0;
+var rank;
+function updatephb() {
+    function Persion(name,score){
+        this.name=name;
+        this.score=score;
+    }
+    var objectList = new Array();
+    objectList.push(new Persion(data1name,data1grade));
+	objectList.push(new Persion(data2name,data2grade));
+	objectList.push(new Persion(data3name,data3grade));
+    na = document.getElementById("name1").value;
+    grade0= score;
+    rank =0;
+    //新用户分数
+    objectList.push(new Persion(na,grade0));
+    //分数从高到低排序
+    objectList.sort(function(a,b){
+        return b.score-a.score});
+    for(var i=0;i<3;i++){
+    	if(objectList[i].name==na && objectList[i].score==grade0){
+    		rank=i+1;
+    		break;
+    	} 		
+    }
+    //输出排行前3名
+    document.getElementById("bbbrank1").innerHTML = objectList[0].name+'<br /><br />'+objectList[0].score+'<br /><br />';
+    document.getElementById("bbbrank2").innerHTML = objectList[1].name+'<br /><br />'+objectList[1].score+'<br /><br />';
+    document.getElementById("bbbrank3").innerHTML = objectList[2].name+'<br /><br />'+objectList[2].score+'<br /><br />';
+    document.getElementById("aaarank1").innerHTML =(1)+'<br /><br />'+"成绩"+'<br /><br />';
+    document.getElementById("aaarank2").innerHTML =(2)+'<br /><br />'+"成绩"+'<br /><br />';
+    document.getElementById("aaarank3").innerHTML =(3)+'<br /><br />'+"成绩"+'<br /><br />';
+    var params={
+	    	"rank":rank,
+	    	"grade":grade0,
+	    	"name":na,
+	}
+    $.ajax({    
+        type: "post",    
+        async: false,    
+        url: "/activity/update.do",    
+  		data: JSON.stringify(params),
+        dataType: "json",   
+        contentType: "application/json; charset=utf-8",   
+        error: function(data){  
+        	alert("出错了！！:"+data.msg);
+        } , 
+        success: function(data) {  
+        	/* alert("success:"+data.msg);   */
+            $("#result").html(data.msg) ;   
+            if (data.msg == "update succ") {//根据返回值进行跳转
+                //window.location.href = 'main.jsp?userName='+data.userName+'&userId='+data.userId;//
+                alert("成绩录入成功");
+            }
+            else if(data.msg == "error"){
+            	alert("成绩录入失败");
+            }
+        }     
+    }); 
+    
+    var strFile = "D:\\test.txt";
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var objStream = fso.CreateTextFile(strFile, true);
+    objStream.WriteLine(objectList[0].name);
+    objStream.WriteLine(objectList[0].score);
+    objStream.WriteLine(objectList[1].name);
+    objStream.WriteLine(objectList[1].score);
+    objStream.WriteLine(objectList[2].name);
+    objStream.Write(objectList[2].score);
+
+    objStream.Close();
+	$(".fenxiangshangchuan").hide();
+}
+    
+
+    //保存信息到本地文件
+    function yes() {
+        var strFile = "D:\\test.txt";
+        var objFSO = new ActiveXObject("Scripting.FileSystemObject");
+        var objStream = objFSO.CreateTextFile(strFile, true);
+        /*保存所有
+        for(var k=0;k<=tlen/2;k++){
+            if(k<tlen/2) {
+                objStream.WriteLine(objectList[k].name);
+                objStream.WriteLine(objectList[k].score);
+            }
+            else{
+                objStream.WriteLine(objectList[k].name);
+                objStream.Write(objectList[k].score);
+            }
+        }
+        */
+        //保存前3名
+        objStream.WriteLine(objectList[0].name);
+        objStream.WriteLine(objectList[0].score);
+        objStream.WriteLine(objectList[1].name);
+        objStream.WriteLine(objectList[1].score);
+        objStream.WriteLine(objectList[2].name);
+        objStream.Write(objectList[2].score);
+
+        objStream.Close();
+
+    }
+
+ 
+    function ajaxGet() { 
+        	var params={};	
+            $.ajax({   
+                type: "post",    
+                async: true,    
+                url: "/activity/search.do",    
+          		data: JSON.stringify(params),
+                dataType: "json",   
+                contentType: "application/json; charset=utf-8",   
+                error: function(data){  
+                	alert("出错了！！:"+data.msg1);
+                } , 
+                success: function(data) {  
+                	/* alert("success:"+data.msg);   */
+                    $("#result").html(data.msg1) ;  
+                    if (data.msg1 == "succ"&&data.msg2 == "succ"&&data.msg3 == "succ") {
+                    	$("#bbbrank1").html(data.rank1name+"<br /><br />"+data.rank1grade+"<br /><br />");
+                    	$("#bbbrank2").html(data.rank2name+"<br /><br />"+data.rank2grade+"<br /><br />");
+                    	$("#bbbrank3").html(data.rank3name+"<br /><br />"+data.rank3grade+"<br /><br />");
+                    	$("#aaarank1").html("1"+"<br /><br />"+"成绩"+"<br /><br />");
+                    	$("#aaarank2").html("2"+"<br /><br />"+"成绩"+"<br /><br />");
+                    	$("#aaarank3").html("3"+"<br /><br />"+"成绩"+"<br /><br />");
+                    	data1name=data.rank1name;
+                    	data1grade=data.rank1grade;
+                    	data2name=data.rank2name;
+                    	data2grade=data.rank2grade;
+                    	data3name=data.rank3name;
+                    	data3grade=data.rank3grade;
+                    }
+                    else{
+                    	alert("error");
+                    }
+                }     
+            }); 
+      }
+    
+    
+    
+    function ajaxsearch() { 
+    	var params={};	
+        $.ajax({   
+            type: "post",    
+            async: true,    
+            url: "/activity/search.do",    
+      		data: JSON.stringify(params),
+            dataType: "json",   
+            contentType: "application/json; charset=utf-8",   
+            error: function(data){  
+            	alert("出错了！！:"+data.msg1);
+            } , 
+            success: function(data) {  
+            	/* alert("success:"+data.msg);   */
+                $("#result").html(data.msg1) ;  
+                if (data.msg1 == "succ"&&data.msg2 == "succ"&&data.msg3 == "succ") {
+                    var grade1 = data.rank1grade;
+                    var grade2 = data.rank2grade; 
+                    var grade3 = data.rank3grade;
+                    var grade= score;
+                    if(parseInt(grade)>=parseInt(grade3)){
+                    	$(".fenxiangshangchuan").show();
+                    }else
+                    	{
+                    	$(".nuli").show();
+                    	}
+                    
+                }
+                else{
+                	alert("error");
+                }
+            }     
+        }); 
+    }
+</script>
+</html>

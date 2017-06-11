@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<web-app version="3.0"   
+    xmlns="http://java.sun.com/xml/ns/javaee"   
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   
+    http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">  
+  <welcome-file-list>  
+    <welcome-file>index.jsp</welcome-file>  
+  </welcome-file-list>  
+    
+    <!--1.配置spring分发器(是总的控制中心  被拦截的url会汇聚到该servlet) -->  
+    <servlet>  
+        <servlet-name>springmvc</servlet-name>    
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
+        <!--配置spring上下文  (从该目录下加载spring mvc的配置文件) -->  
+        <init-param>  
+           <param-name>contextConfigLocation</param-name>  
+           <param-value>/WEB-INF/classes/spring*.xml</param-value>  
+        </init-param>  
+        <load-on-startup>1</load-on-startup>  <!-- tomcat启动后立即加载 -->  
+    </servlet>  
+      
+    <!--2. 配置spring拦截的url模板  以.do结尾的url-->  
+    <servlet-mapping>  
+        <servlet-name>springmvc</servlet-name>  
+        <url-pattern>*.do</url-pattern>  
+    </servlet-mapping>  
+      
+    <!--3. 注册配置文件读取器，监听spring配置文件的变化 详见 注3-->  
+    <listener>  
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
+    </listener>   
+      
+    <!--4.  设定配置文件列表 设置全局参数 为3的参数配置信息-->  
+    <context-param>  
+        <param-name>contextConfigLocation</param-name>  
+        <param-value>/WEB-INF/classes/*Config.xml</param-value>  
+    </context-param>   
+   <context-param>  
+    <param-name>contextConfigLocation</param-name>  
+    <param-value>classpath:ApplicationContext.xml</param-value>
+  </context-param>  
+      
+    <!--5. 编码字符集统一为UTF-8（过滤器） -->  
+    <filter>  
+        <display-name>encodingFilter</display-name>  
+        <filter-name>encodingFilter</filter-name>  
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
+        <init-param>  
+            <param-name>encoding</param-name>  
+            <param-value>UTF-8</param-value>  
+        </init-param>  
+    </filter>  
+      
+  
+</web-app>  

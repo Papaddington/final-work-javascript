@@ -32,11 +32,9 @@ public class UserController {
 	
 
     	JSONObject json = new JSONObject(params);
-    	String rankstr = (String) json.get("rank");
-    	int rank =Integer.valueOf(rankstr);
+    	int rank =(int)json.get("rank");
     	String name = (String) json.get("name");
-    	String gradestr = (String) json.get("grade");
-    	int grade=Integer.valueOf(gradestr);
+    	int grade=(int)json.get("grade");
     	
     	System.out.println("rank:"+rank);
     	System.out.println("name:"+name);
