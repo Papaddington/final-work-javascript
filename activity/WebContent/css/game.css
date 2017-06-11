@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    text-align: center;
+}
+p {
+    margin-top:40px;
+    left: 50%;
+    right: 50%;
+}
+
+.container {
+    margin:0 auto;
+    padding-bottom: 3.5rem;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    width: 100%;
+    max-width: 550px;
+    text-align: center;
+}
+
+.game {
+    position: relative;
+    margin: 150px auto 0px;
+    background: #9a9a95;
+    padding: 7px;
+    display: inline-block;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+.tile-container {
+    border-radius: 6px;
+    position: relative;
+    width: 500px;
+    height: 500px;
+}
+
+.tile, .background {
+    display: block;
+    color: #F8FFE5;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.background {
+    z-index: 1;
+    text-align: center;
+    border: 7px solid #9a9a95;
+    background-color: #F8FFE5;
+}
+.tile {
+    z-index: 2;
+    background: #FFC43D;
+    color: #F8FFE5;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    align-items: center;
+    -webkit-transition: 110ms ease-in-out;
+    transition: 110ms ease-in-out;
+    border-radius: 3px;
+    border: 7px solid #9a9a95;
+    box-sizing: border-box;
+}
+.tile--4 {
+    background: #EF476F;
+    color: #F8FFE5;
+}
+.tile--8 {
+    background: #1B9AAA;
+    color: #F8FFE5;
+}
+.tile--16 {
+    background: #06D6A0;
+    color: #F8FFE5;
+}
+.tile--32 {
+    background: #f37694;
+    color: #F8FFE5;
+}
+.tile--64 {
+    background: #22c2d6;
+    color: #F8FFE5;
+}
+.tile--128 {
+    background: #17f8be;
+    color: #F8FFE5;
+}
+.tile--256 {
+    background: #ffd470;
+    color: #F8FFE5;
+}
+.tile--512 {
+    background: #eb184a;
+    color: #F8FFE5;
+}
+.tile--1024 {
+    background: #14727e;
+    color: #F8FFE5;
+}
+.tile--2048 {
+    background: #05a47b;
+    color: #F8FFE5;
+}
+.tile--pop {
+    -webkit-animation: pop 0.3s ease-in-out;
+    animation: pop 0.3s ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+@-webkit-keyframes pop {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    90% {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+
